@@ -1,26 +1,43 @@
 #include <iostream>
 
-#include "Move.h"
-int main(){
-    typedef enum{
-        WHITE,
-        BLACK
-    }Turn;
-    ChessBoard board = ChessBoard();
+#include "Types.h"
+#include "PlayerMove.h"
+#include "Player.h"
+using std::string;
 
-    HumanPlayer player1 = HumanPlayer();
-    HumanPlayer player2 = HumanPlayer();
+
+static string getPlayerName(string color){
+    std::cout<<color<<" player,please choose your name"<<std::endl;
+    string name;
+    std::cin>>name;
+    return name;
+}
+
+static Turn switchTurn(Turn turn){
+    switch(turn){
+        case WHITE:return BLACK;
+        case BLACK:return WHITE;
+        default:return WHITE; // shouldn't get here
+    }
+}
+
+int main(){
+    ChessBoard board = ChessBoard();
+    HumanPlayer player1 = HumanPlayer("White");
+    HumanPlayer player2 = HumanPlayer("Black");
+    Turn turn=WHITE;
 
     while(!board.gameIsOver()){ // maybe save check mate in board and just check it
         Player player = (turn==WHITE) ? player1:player2;
         while(true) {
-            ChessMove move = player.requestMove(board);
-            if(board.isLegalMove()){
-                board.applyMove(move);
+            PlayerMove playerMove = player.requestMove(board);
+            bool isLegalMove = board.isLegalMove(playerMove);
+            if(isLegalMove){
+                board.applyMove(playerMove);
                 break;
             }
         }
-        turn=(turn+1)%2;
+        turn=switchTurn(turn);
         board.changeTurn(turn);
     }
     board.announceWinner();
