@@ -5,12 +5,14 @@
 #include <string>
 #include <sstream>
 #include "PlayerMove.h"
+#include "ChessBoard.h"
 
 using std::string;
 // I made an abstract Player class so i can -perhaps later on- add an AI PLayer class
 class Player {
 public:
-    virtual PlayerMove requestMove(ChessBoard board) = delete;
+    Player()=default;
+    virtual PlayerMove requestMove(ChessBoard board) = 0;
 
 };
 
@@ -18,7 +20,7 @@ class HumanPlayer: public Player{
     string name;
 public:
     HumanPlayer(string name);
-    PlayerMove requestMove(ChessBoard board);
+    virtual PlayerMove requestMove(ChessBoard board)override;
 };
 
 #endif //CHESS_PLAYER_H

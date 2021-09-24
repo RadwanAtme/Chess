@@ -3,6 +3,7 @@
 #include "Types.h"
 #include "PlayerMove.h"
 #include "Player.h"
+#include "ChessBoard.h"
 using std::string;
 
 
@@ -21,24 +22,27 @@ static Turn switchTurn(Turn turn){
     }
 }
 
-int main(){
-    ChessBoard board = ChessBoard();
-    HumanPlayer player1 = HumanPlayer("White");
-    HumanPlayer player2 = HumanPlayer("Black");
-    Turn turn=WHITE;
+int main() {
+    ChessBoard board;
+    HumanPlayer player1("White");
+    HumanPlayer player2("Black");
+    Turn turn = WHITE;
 
-    while(!board.gameIsOver()){ // maybe save check mate in board and just check it
-        Player player = (turn==WHITE) ? player1:player2;
-        while(true) {
+    while (!board.gameIsOver()) { // maybe save check mate in board and just check it
+        HumanPlayer player = (turn == WHITE) ? player1 : player2;
+        while (true) {
             PlayerMove playerMove = player.requestMove(board);
+
             bool isLegalMove = board.isLegalMove(playerMove);
-            if(isLegalMove){
-                board.applyMove(playerMove);
+            if (isLegalMove) {
+                if (true)
+                    board.applyMove(playerMove);
                 break;
             }
         }
-        turn=switchTurn(turn);
+        turn = switchTurn(turn);
         board.changeTurn(turn);
     }
     board.announceWinner();
+    return 0;
 }

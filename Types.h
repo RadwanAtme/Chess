@@ -19,5 +19,5 @@ typedef enum{
     WHITE_PIECE_ZONE,
     BLACK_PIECE_ZONE,
     MAKE_ENUM(BLACK)
-}ChessPiece;
+}PieceName;
 #endif //CHESS_TYPES_H

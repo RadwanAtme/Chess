@@ -9,20 +9,20 @@ using std::vector;
 using std::string;
 
 class ChessBoard {
-    vector<vector<ChessPiece>> matrix;
+    vector<vector<PieceName>> matrix;
     Turn turn;
     GameState gameFinishState;
     string winnerName;
 public:
     ChessBoard();
     ~ChessBoard() = default;
-    ChessBoard(ChessBoard& board) = delete;
 
     void changeTurn(Turn turn);
     void printBoard();
     void applyMove(PlayerMove playerMove);
     bool gameIsOver();
-    bool isLegalMove(PlayerMove playerMove);
+
+    void check
 
 
 

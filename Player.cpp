@@ -3,7 +3,6 @@
 
 HumanPlayer::HumanPlayer(string name):Player(),name(name){}
 
-
 PlayerMove HumanPlayer::requestMove(ChessBoard board) {
     int sourceRow,sourceCol,destinationRow,destinationCol;
     std::cout<<name<<" turn please choose your next move"<<std::endl;
