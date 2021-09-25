@@ -5,6 +5,9 @@ struct Point{
     int row;
     int col;
     Point(int row,int col):row(row),col(col){}
+    bool operator==(const Point& point){
+        return ((this->row==point.row)&&(this->col==point.col))
+    }
 };
 
 struct PlayerMove {

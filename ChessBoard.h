@@ -22,6 +22,8 @@ public:
     void applyMove(PlayerMove playerMove);
     bool gameIsOver();
 
+    vector<vector<PieceName>> getBoard();
+
     void check
 
 

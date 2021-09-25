@@ -123,6 +123,7 @@ static void printPiece(PieceName piece){
 }
 
 void ChessBoard::printBoard() {
+    // TODO: add the function to print the board in blacks turn
     printColLetters();
     for(int row=8;row>0;row--){
         printRowNumber(row);
@@ -136,3 +137,6 @@ void ChessBoard::printBoard() {
     printColLetters();
 }
 
+vector<vector<PieceName>> ChessBoard::getBoard() {
+    return matrix;
+}
